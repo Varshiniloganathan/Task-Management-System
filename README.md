@@ -12,17 +12,17 @@ A simple web-based application to manage daily tasks effectively. Users can add,
 - **Database**: MongoDB
 ## Getting Started
 ### 1. Clone the Repository
-git clone https://github.com/Varshiniloganathan/Task-Management-System.git
-cd Task-Management-System
+``` git clone https://github.com/Varshiniloganathan/Task-Management-System.git ```
+``` cd Task-Management-System ```
 ### 2. Start the Backend Server
-cd backend
-npm install
-node app.js (or) nodemon app.js
-Server will run at: http://localhost:3000
+``` cd backend ```
+``` npm install ```
+``` node app.js (or) nodemon app.js ```
+Server will run at: ``` http://localhost:3000 ```
 ### 3. Start the Frontend (React)
-cd frontend
-npm install
-npm start
+``` cd frontend ```
+``` npm install ```
+``` npm start ```
 
 # Live Demo:
 [task-management-system-2rlv.vercel.app](https://task-management-system-2rlv.vercel.app/)
