@@ -8,6 +8,7 @@ import { useState,useEffect } from 'react';
 const Alltasks=()=>{
   const [InputDiv, setInputDiv]=useState("hidden");
   const [Data, setData] = useState();
+  const [updatedData, setUpdatedData] = useState({});
   const headers = {
     id:  localStorage.getItem("id") ,
     authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -43,7 +44,8 @@ const Alltasks=()=>{
             <IoMdAddCircle className="text-4xl text-gray-400 hover:text-gray-100 transition-all duration-300"/>
           </button>
       </div>
-      {Data && <Cards home={"true"} setInputDiv={setInputDiv} data={Data}  />}
+      {Data && <Cards home={"true"} setInputDiv={setInputDiv} data={Data} setData={setData}
+      setUpdatedData={setUpdatedData} />}
     </div>
     <InputData InputDiv={InputDiv} setInputDiv={setInputDiv} />
     </>

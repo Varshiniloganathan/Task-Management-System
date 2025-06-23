@@ -6,7 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteSweep } from "react-icons/md";
 import { IoMdAddCircle } from "react-icons/io";
 
-const Cards=({home,setInputDiv,data,setUpdatedData })=> {
+const Cards=({home,setInputDiv,data,setData,setUpdatedData })=> {
   const headers = {
     id:  localStorage.getItem("id") ,
     authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -18,8 +18,16 @@ const Cards=({home,setInputDiv,data,setUpdatedData })=> {
       {},
       { headers }
     );
+    // Optimistically update the task's complete status in state
+    setData((prevData) =>
+      prevData.map((task) =>
+        task._id === id ? { ...task, complete: !task.complete } : task
+      )
+    );
+    alert("Task completion status updated!");
     //alert(response.data.message);
     } catch(error) {
+      alert("Failed to update task status.");
       console.log(error);
     }
   };
@@ -30,8 +38,16 @@ const Cards=({home,setInputDiv,data,setUpdatedData })=> {
       {},
       { headers }
     );
-    console.log(response);
+    // Optimistically update the task's important status in state
+    setData((prevData) =>
+      prevData.map((task) =>
+        task._id === id ? { ...task, important: !task.important } : task
+      )
+    );
+    alert("Task importance status updated!");
+    // alert(response.data.message);
     } catch(error) {
+      alert("Failed to update task importance.");
       console.log(error);
     }
   };
@@ -43,9 +59,13 @@ const Cards=({home,setInputDiv,data,setUpdatedData })=> {
     try {
       const response =  await axios.delete(
       `http://localhost:2000/api/v2/delete-tasks/${id}`,
-      {},
+      //{},
       { headers }
+      
     );
+    console.log(response.data.message);
+    // Update the state to remove the deleted task
+    setData((prevData) => prevData.filter((task) => task._id !== id));
     console.log(response.data.message);
     } catch(error) {
       console.log(error);
